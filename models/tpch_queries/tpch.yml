@@ -1,0 +1,40 @@
+
+version: 2
+
+models:
+  - name: tpch_q01
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('q01_expected_output')
+    columns:
+      - name: l_return_flag
+        description: This column represents a flag indicating the return status of the line item. 
+
+      - name: l_linestatus
+        description: This column indicates the status of the line item. It's often used to differentiate between different stages or statuses of line items 
+
+      - name: sum_qty
+        description: This is the total quantity of items ordered for each combination of l_returnflag and l_linestatus. It sums up the l_quantity values.  
+
+      - name: sum_base_price
+        description: This is the total extended price of the items for each combination of l_returnflag and l_linestatus. 
+
+      - name: sum_disc_price
+        description: This column calculates the total price after applying discounts.
+
+      - name: sum_charge
+        description:  This column represents the total charge after applying both discounts and taxes. It sums up the final charge after applying the discount and then adding the tax to the extended price for each line item.
+
+      - name: avg_qty
+        description: This is the average quantity of items ordered for each combination of l_returnflag and l_linestatus. It calculates the mean of l_quantity values.
+
+      - name: avg_price
+        description: This is the average extended price of items for each combination of l_returnflag and l_linestatus. It calculates the mean of l_extendedprice values.
+
+      - name: avg_disc
+        description: This is the average discount applied to items for each combination of l_returnflag and l_linestatus. It calculates the mean of l_discount values.
+
+      - name: count_order
+        description: s column counts the total number of orders (or line items) for each combination of l_returnflag and l_linestatus. It provides a count of rows in each group.
+
+
